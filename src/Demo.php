@@ -12,16 +12,27 @@ class Demo
     function __construct(array $data)
     {
         $this->book = $data;
-        $this->book_count = $data['first'] + $data['second']
-                           + $data['third'] + $data['fourth']
-                           + $data['fifth'];
+        foreach ($data as $value) {
+            if($value > 0)
+                $this->book_count++;
+        }
     }
 
     public function getPrice()
     {
-        if($this->book_count === 1)
-            $this->totalPrice = 100;
-
+        switch($this->book_count){
+            case 2:
+                foreach ($this->book as $key => $value) {
+                    $this->totalPrice += $value * $this->unitPrice;
+                    $this->book[$key]--;
+                }
+                $this->totalPrice *= 0.95;
+                break;
+            default:
+                foreach ($this->book as $value) {
+                    $this->totalPrice += $value * $this->unitPrice;
+                }
+        }
         return $this->totalPrice;
     }
 }
