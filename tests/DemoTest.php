@@ -24,4 +24,24 @@ class DemoTest extends \PHPUnit\Framework\TestCase
         /** assert */
         $this->assertEquals($totalPrice, $resultPrice);
     }
+
+    public function test_for_買了兩本不同的書_則會有5off的折扣()
+    {
+        /** arrange */
+        $data = [
+            'first' => 1,
+            'second' => 0,
+            'third' => 1,
+            'fourth' => 0,
+            'fifth' => 0
+        ];
+        $totalPrice = 190;
+
+        /** act */
+        $Demo = new Demo($data);
+        $resultPrice = $Demo->getPrice();
+
+        /** assert */
+        $this->assertEquals($totalPrice, $resultPrice);
+    }
 }
