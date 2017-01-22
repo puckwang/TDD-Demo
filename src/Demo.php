@@ -12,24 +12,17 @@ class Demo
     function __construct(array $data)
     {
         $this->book = $data;
-        $this->getSameCount();
-    }
-    private function getSameCount()
-    {
-        $this->book_count = 0;
-        foreach ($this->book as $value) {
-            if($value > 0)
-                $this->book_count++;
-        }
     }
     public function getPrice()
     {
-        while($this->book_count > 0){
+        do{
             $price = 0;
+            $this->book_count = 0;
             foreach ($this->book as $key => $value) {
                 if($value > 0){
                     $price += $this->unitPrice;
                     $this->book[$key]--;
+                    $this->book_count++;
                 }
             }
             switch($this->book_count){
@@ -47,8 +40,7 @@ class Demo
                     break;
             }
             $this->totalPrice += $price;
-            $this->getSameCount();
-        }
+        }while($this->book_count > 0);
 
         return $this->totalPrice;
     }
