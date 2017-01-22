@@ -28,6 +28,13 @@ class Demo
                 }
                 $this->totalPrice *= 0.95;
                 break;
+            case 3:
+                foreach ($this->book as $key => $value) {
+                    $this->totalPrice += $value * $this->unitPrice;
+                    $this->book[$key]--;
+                }
+                $this->totalPrice *= 0.90;
+                break;
             default:
                 foreach ($this->book as $value) {
                     $this->totalPrice += $value * $this->unitPrice;
