@@ -108,4 +108,46 @@ class DemoTest extends \PHPUnit\Framework\TestCase
         /** assert */
         $this->assertEquals($totalPrice, $resultPrice);
     }
+
+    /** 一二集各買了一本，第三集買了兩本，價格應為100*3*0.9 + 100 = 370 */
+    public function test_for_一二集買一本_三集買兩本()
+    {
+        /** arrange */
+        $data = [
+            'first' => 1,
+            'second' => 1,
+            'third' => 2,
+            'fourth' => 0,
+            'fifth' => 0
+        ];
+        $totalPrice = 370;
+
+        /** act */
+        $Demo = new Demo($data);
+        $resultPrice = $Demo->getPrice();
+
+        /** assert */
+        $this->assertEquals($totalPrice, $resultPrice);
+    }
+
+    /** 第一集買了一本，第二三集各買了兩本，價格應為100*3*0.9 + 100*2*0.95 = 460 */
+    public function test_for_一集買一本_二三集買兩本()
+    {
+        /** arrange */
+        $data = [
+            'first' => 1,
+            'second' => 2,
+            'third' => 2,
+            'fourth' => 0,
+            'fifth' => 0
+        ];
+        $totalPrice = 460;
+
+        /** act */
+        $Demo = new Demo($data);
+        $resultPrice = $Demo->getPrice();
+
+        /** assert */
+        $this->assertEquals($totalPrice, $resultPrice);
+    }
 }
